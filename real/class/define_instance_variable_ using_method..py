@@ -1,30 +1,48 @@
 class Vehicle:
 
     #class variable
-    color =['black', 'white']
-    wheel= [2,4]
-    is_license= False
+    vehicle_type= "motorbike"
+    wheel= 2
 
     #instance variable
-    def __init__(self,name, top_speed):
-        self.name= name
+    def __init__(self, bike_name, top_speed):
+        self.bike_name= bike_name
         self.top_speed= top_speed
-        super().__init__()
 
-    # Adds an instance variable by method
-    def set_engine(self, name):
-        self.engine= name
+    def get_vehicle_description(self):
+        print("The vehicle type is {} and the name of the bike is {} top speed {}".format(self.vehicle_type, self.bike_name, self.top_speed))
 
-    def top_spd(self):
-        return 'top speed is {}'.format(self.top_speed)
-    
-    def description(self):
-        return 'name of the vehicle is {} vehicle color available {}, and wheel must be {}'.format(self.engine, len(self.color), self.wheel)
+    #instance variable tyre_Size
+    def tyre_description(self, tyre_size):
+        print("This bike have {} wheels and the size of the tyre is {}".format(self.wheel, tyre_size))
+
+    def byke_type(cls):
+        print("The vehicle type is {}".format(cls.vehicle_type))
+
+    @classmethod
+    def byke_wheel(cls):
+        print("The vehicle type is {}".format(cls.vehicle_type))
+
+    @staticmethod
+    def oil_cost_per_day(km_per_ltr, ltr_price, total_km):
+        ltr_need= total_km/km_per_ltr
+        return ltr_need*ltr_price
+
+# Vehicle.byke_type= classmethod(Vehicle.byke_type)
+# a= Vehicle('sd',87)c
+# a.byke_type()
+class Suzuki(Vehicle):
+
+    def __init__(self, bike_name, top_speed):
+        super().__init__(bike_name, top_speed)
 
 
-gixxer_2019= Vehicle('gixxer 2019', '130kmph')
-gixxer_2019.set_engine('fi')
-print(gixxer_2019.description())
+    def oil_cost_per_day(self , km_per_ltr, ltr_price, total_km):
+        ltr_need= total_km/km_per_ltr
+        return ltr_need*ltr_price    
 
-print(gixxer_2019.color)
-print(Vehicle.wheel)
+r= Suzuki('gxr', 170)
+print(r.oil_cost_per_day(44, 89, 761))
+
+a= Vehicle('gxr', 987)
+a.get_vehicle_description()
